@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     // const [enteredTitle, setEnteredTitle] = useState('');
     // const [enteredAmount, setEnteredAmount] = useState('');
     // const [enteredDate, setEnteredDate] = useState('');
@@ -22,46 +22,64 @@ const ExpenseForm = () => {
         //     enteredDate: userInput.enteredDate
         // });
 
-        setUserInput({
-            ...userInput,
-            enteredTitle: event.target.value // Overwriting the enteredTitle property
-        });
+        // setUserInput({
+        //     ...userInput,
+        //     enteredTitle: event.target.value // Overwriting the enteredTitle property
+        // });
 
-        console.log(userInput);
+        // As react schedules the state updates, we need to make sure we are working with the latest state.
+        // This is why we should use the following code, using the prevState as input for the new state:
+        setUserInput(prevState => {
+            return { ...prevState, enteredTitle: event.target.value }
+        });
+        // console.log(userInput);
     };
 
     const amountChangeHandler = event => {
-        // setEnteredAmount(event.target.value);
-        setUserInput({
-            ...userInput,
-            enteredAmount: event.target.value
+        setUserInput(prevState => {
+            return { ...prevState, enteredAmount: event.target.value }
         });
-        console.log(userInput);
+        // console.log(userInput);
     };
 
     const dateChangeHandler = event => {
-        // setEnteredDate(event.target.value);
-        setUserInput({
-            ...userInput,
-            enteredDate: event.target.value
+        setUserInput(prevState => {
+            return { ...prevState, enteredDate: new Date(event.target.value) }
         });
-        console.log(userInput);
+        // console.log(userInput);
+    };
+
+    const submitHandler = event => {
+        event.preventDefault();
+
+        let expenseData = {
+            title: '',
+            amount: '',
+            date: ''
+        };
+        ({ enteredTitle: expenseData.title, enteredAmount: expenseData.amount, enteredDate: expenseData.date } = { ...userInput });
+
+        console.log(expenseData);
+
+        props.onMySaveExpenseData(expenseData); // This is coming rom the NewExpense component
+
+        setUserInput({ enteredTitle: '', enteredAmount: '', enteredDate: '' });
     };
 
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="text" onChange={titleChangeHandler} />
+                    <input type="text" value={userInput.enteredTitle} onChange={titleChangeHandler} />
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type="number" min="0.01" step="0.01" onChange={amountChangeHandler} />
+                    <input type="number" min="0.01" step="0.01" value={userInput.enteredAmount} onChange={amountChangeHandler} />
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date" min="2019-01-01" max="2022-12-31" onChange={dateChangeHandler} />
+                    <input type="date" min="2019-01-01" max="2022-12-31" value={userInput.enteredDate} onChange={dateChangeHandler} />
                 </div>
             </div>
             <div className="new-expense__actions">
