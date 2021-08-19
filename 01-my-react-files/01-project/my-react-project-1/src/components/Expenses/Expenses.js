@@ -13,14 +13,18 @@ function Expenses(props) {
         console.log('Expenses.js ->', filteredYear);
     }
 
+    const filteredExpenses = props.expenses.filter(expense => expense.date.getFullYear().toString() === filteredYear);
+
     return (
         <div>
             <Card className="expenses">
                 <ExpensesFilter onFilter={onFilterHandler} selectedYear={filteredYear} />
-                <ExpenseItem myTitle={props.expenses[0].title} myAmount={props.expenses[0].amount} myDate={props.expenses[0].date}></ExpenseItem>
+                {/* We can use expressions inside JSX containing JavaScript code as well as React code (custom elements and props) */}
+                {filteredExpenses.map(expense => <ExpenseItem key={expense.id} myTitle={expense.title} myAmount={expense.amount} myDate={expense.date} />)}
+                {/* <ExpenseItem myTitle={props.expenses[0].title} myAmount={props.expenses[0].amount} myDate={props.expenses[0].date}></ExpenseItem>
                 <ExpenseItem myTitle={props.expenses[1].title} myAmount={props.expenses[1].amount} myDate={props.expenses[1].date}></ExpenseItem>
                 <ExpenseItem myTitle={props.expenses[2].title} myAmount={props.expenses[2].amount} myDate={props.expenses[2].date}></ExpenseItem>
-                <ExpenseItem myTitle={props.expenses[3].title} myAmount={props.expenses[3].amount} myDate={props.expenses[3].date}></ExpenseItem>
+                <ExpenseItem myTitle={props.expenses[3].title} myAmount={props.expenses[3].amount} myDate={props.expenses[3].date}></ExpenseItem> */}
             </Card>
         </div >
     );
