@@ -4,6 +4,7 @@ import './Expenses.css';
 import Card from '../UI/Card';
 import ExpensesList from './ExpensesList';
 import ExpensesFilter from '../Filter/ExpensesFilter';
+import ExpensesChart from './ExpensesChart';
 
 function Expenses(props) {
     let [filteredYear, setFilteredYear] = useState('2020');
@@ -25,6 +26,7 @@ function Expenses(props) {
                     : filteredExpenses.map(expense => <ExpenseItem key={expense.id} myTitle={expense.title} myAmount={expense.amount} myDate={expense.date} />)} */}
                 {/* {filteredExpenses.length === 0 && <p>No expenses found.</p>}
                 {filteredExpenses.length > 0 && filteredExpenses.map(expense => <ExpenseItem key={expense.id} myTitle={expense.title} myAmount={expense.amount} myDate={expense.date} />)} */}
+                <ExpensesChart expenses={filteredExpenses} />
                 <ExpensesList expenses={filteredExpenses} />
             </Card>
         </div >
