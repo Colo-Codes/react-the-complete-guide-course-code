@@ -6,13 +6,16 @@ import './ExpenseItem.css';
 
 function ExpenseItem(myPropsObject) {
     return (
-        <Card className="expense-item">
-            <ExpenseDate mySubDate={myPropsObject.myDate} />
-            <div className="expense-item__description">
-                <h2>{myPropsObject.myTitle}</h2>
-                <div className="expense-item__price">{`$${myPropsObject.myAmount}`}</div>
-            </div>
-        </Card>);
+        <li>
+            <Card className="expense-item">
+                <ExpenseDate mySubDate={myPropsObject.myDate} />
+                <div className="expense-item__description">
+                    <h2>{myPropsObject.myTitle}</h2>
+                    <div className="expense-item__price">{`$${myPropsObject.myAmount}`}</div>
+                </div>
+            </Card>
+        </li>
+    );
 }
 
 export default ExpenseItem;
