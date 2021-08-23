@@ -1,0 +1,37 @@
+.form-flex {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    max-width: 40rem;
+    background-color: antiquewhite;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px dashed goldenrod;
+    color: black;
+}
+
+.form-flex input {
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid goldenrod;
+    margin: 0.5rem 0;
+}
+.form-flex button {
+    margin: 0.5rem auto 0 auto;
+    max-width: 10rem;
+    cursor: pointer;
+    padding: 1rem;
+    background-color: goldenrod;
+    border: 2px solid rgb(153, 113, 13);
+    color: rgb(87, 64, 6);
+}
+.form-flex button:hover {
+    background-color: rgb(231, 197, 111);
+    border: 2px solid rgb(114, 84, 8);
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+.form-flex button:active {
+    background-color: goldenrod;
+    border: 2px solid rgb(153, 113, 13);
+    box-shadow: none;
+}
