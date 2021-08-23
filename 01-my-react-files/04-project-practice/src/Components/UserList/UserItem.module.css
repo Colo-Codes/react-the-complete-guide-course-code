@@ -1,6 +1,7 @@
 .item {
-    background: darkgrey;
+    background: #bc6c25;
     padding: 0.5rem;
     border-radius: 0.5rem;
     margin: 0.5rem 0;
+    transition: all 0.2s;
 }

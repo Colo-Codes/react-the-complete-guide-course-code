@@ -10,6 +10,7 @@ const UserList = props => {
 
     return (
         <ul className={styles['user-list-flex']}>
+            <p>Click on a name to delete it</p>
             {props.listOfUsers.map(user => <UserItem key={props.id} userData={user} onDeleteUser={props.onDeleteUser} />)}
         </ul>
     );

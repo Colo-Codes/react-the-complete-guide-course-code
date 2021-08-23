@@ -1,30 +1,42 @@
 import styles from './UserNew.module.css';
+import { useState } from 'react';
+import Card from '../UI/Card';
+import Button from '../UI/Button';
 
 const UserNew = props => {
 
-    let name, age;
+    const [inputValue, setInputValue] = useState('');
 
-    const nameChangeHandler = e => {
-        name = e.target.value
-    };
+    let state = { name: '', age: '' };
 
-    const ageChangeHandler = e => {
-        age = e.target.value
+    const inputChangeHandler = e => {
+        e.target.type === 'text'
+            ? state.name += e.target.value
+            : state.age += e.target.value;
     };
 
     const submitHandler = e => {
         e.preventDefault();
-        props.addNewUser({ name: name, age: age, id: Math.random().toString() });
+
+        // setInputValue('');
+
+        console.log(e.target.type);
+
+        props.addNewUser({ name: state.name, age: state.age, id: Math.random().toString() });
+
     };
 
     return (
-        <form className={styles['form-flex']} onSubmit={submitHandler}>
-            <label>User name</label>
-            <input type="text" onChange={nameChangeHandler}></input>
-            <label>User age</label>
-            <input type="number" onChange={ageChangeHandler}></input>
-            <button type="submit">Add new user</button>
-        </form>
+        <Card myClassName={styles['card-tweak']}>
+            <form className={styles['form-flex']} onSubmit={submitHandler}>
+                <h1>Add a new user to the list</h1>
+                <label htmlFor="user-name">User name</label>
+                <input id="user-name" type="text" onChange={inputChangeHandler} value={state.name}></input>
+                <label htmlFor="user-age">User age (in years)</label>
+                <input id="user-age" type="number" onChange={inputChangeHandler}></input>
+                <Button type="submit" value="Add new user" />
+            </form>
+        </Card>
     );
 };
 

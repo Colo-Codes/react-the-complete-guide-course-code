@@ -3,10 +3,11 @@
     flex-direction: column;
     margin: 2rem auto;
     max-width: 40rem;
-    background-color: lightgrey;
+    background-color: #dda15e;
     padding: 2rem;
     border-radius: 1rem;
     border: 1px dashed darkgrey;
-    color: black;
+    color: #fefae0;
     list-style: none;
+    transition: all 0.2s;
 }

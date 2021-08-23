@@ -1,0 +1,17 @@
+.myButton {
+    margin: 0.5rem auto 0 auto;
+    max-width: 10rem;
+    cursor: pointer;
+    padding: 1rem;
+    background-color: #9fae6d;
+    border: 5px solid rgba(40, 54, 24, 0.2);
+    border-radius: 1rem;
+    color: #fefae0;
+    transition: all 0.2s;
+}
+.myButton:hover {
+    background-color: #606c38;
+}
+.myButton:active {
+    background-color: #9fae6d;
+}
