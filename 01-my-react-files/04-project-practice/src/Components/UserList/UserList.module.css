@@ -1,0 +1,12 @@
+.user-list-flex {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    max-width: 40rem;
+    background-color: lightgrey;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px dashed darkgrey;
+    color: black;
+    list-style: none;
+}

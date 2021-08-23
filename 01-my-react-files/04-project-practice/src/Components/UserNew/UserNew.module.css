@@ -10,6 +10,10 @@
     color: black;
 }
 
+.form-flex label {
+    color: rgb(87, 64, 6);
+}
+
 .form-flex input {
     height: 2rem;
     border-radius: 0.5rem;
@@ -23,6 +27,7 @@
     padding: 1rem;
     background-color: goldenrod;
     border: 2px solid rgb(153, 113, 13);
+    border-radius: 1rem;
     color: rgb(87, 64, 6);
 }
 .form-flex button:hover {
