@@ -14,8 +14,7 @@ const UserNew = props => {
 
     const submitHandler = e => {
         e.preventDefault();
-
-        props.addNewUser(`${name}, aged ${age}`);
+        props.addNewUser({ name: name, age: age, id: Math.random().toString() });
     };
 
     return (

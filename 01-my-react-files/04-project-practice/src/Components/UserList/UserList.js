@@ -6,9 +6,11 @@ const UserList = props => {
 
     console.log(props);
 
+    //key={props.id} onDelete={props.onDeleteItem}
+
     return (
         <ul className={styles['user-list-flex']}>
-            <UserItem userData={props.userData} />
+            {props.listOfUsers.map(user => <UserItem key={props.id} userData={user} onDeleteUser={props.onDeleteUser} />)}
         </ul>
     );
 };
