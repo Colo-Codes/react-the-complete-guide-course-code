@@ -19,11 +19,11 @@ const UserNew = props => {
         e.preventDefault();
 
         if (inputNameValue.trim().length === 0 || inputAgeValue.trim().length === 0) {
-            console.log('Input should not be empty');
+            props.onErrorMessage('Input should not be empty');
             return;
         }
         if (+inputAgeValue < 1) {
-            console.log('Age should be greater than 0');
+            props.onErrorMessage('Age should be greater than 0');
             return;
         }
 
@@ -31,7 +31,6 @@ const UserNew = props => {
         setInputAgeValue('');
 
         props.onAddNewUser({ name: inputNameValue, age: inputAgeValue, id: Math.round(Math.random() * 1000 + 1000).toString() });
-
     };
 
     return (

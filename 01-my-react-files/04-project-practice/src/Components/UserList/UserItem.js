@@ -1,6 +1,5 @@
 import styles from './UserItem.module.css';
 
-
 const UserItem = props => {
 
     const deleteUserHandler = () => {

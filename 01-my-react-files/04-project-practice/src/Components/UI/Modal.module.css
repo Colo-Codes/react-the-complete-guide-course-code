@@ -1,0 +1,40 @@
+.modal {
+    position: fixed;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20rem;
+    max-width: 100%;
+    height: 10rem;
+    max-height: 100%;
+    padding: 2rem;
+    overflow: auto;
+    background: #ffd6a5;
+    font-weight: bold;
+    text-align: center;
+    color: #dc2f02;
+    border-radius: 1rem;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+.message {
+    margin: 1rem auto;
+}
+
+.modal button {
+    position: relative;
+    bottom: -3rem;
+}
