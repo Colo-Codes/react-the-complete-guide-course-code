@@ -8,15 +8,13 @@ function App() {
 
   const [listOfUsers, setListOfUsers] = useState('');
 
+  // Lifting the state up
   const addNewUserHandler = newUserData => {
     if (!newUserData)
       return;
 
     setListOfUsers(prevUsers => {
-      const updatedUsers = [...prevUsers];
-      updatedUsers.unshift(newUserData);
-      console.log(updatedUsers);
-      return updatedUsers;
+      return [newUserData, ...prevUsers];
     });
   };
 
@@ -29,7 +27,7 @@ function App() {
 
   return (
     <div className="">
-      <UserNew addNewUser={addNewUserHandler} />
+      <UserNew onAddNewUser={addNewUserHandler} />
       {listOfUsers.length > 0 && <UserList listOfUsers={listOfUsers} onDeleteUser={deleteUserHandler} />}
     </div>
   );
