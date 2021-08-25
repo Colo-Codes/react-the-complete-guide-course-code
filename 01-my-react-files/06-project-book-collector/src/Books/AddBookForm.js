@@ -1,9 +1,8 @@
 import { Container, makeStyles, TextField, Button, Grid } from '@material-ui/core';
 import { Book } from '@material-ui/icons';
 import React, { useState } from 'react';
+import ErrorDialog from '../UI/ErrorDialog';
 import Header from '../UI/Header';
-
-// Use Dialogs
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -27,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 const AddBookForm = props => {
     const [bookInfo, setBookInfo] = useState({ title: '', author: '', id: '' });
+    const [openErrorDialog, setOpenErrorDialog] = useState(false);
     const classes = useStyles();
 
     const titleChangeHandler = e => {
@@ -37,8 +37,20 @@ const AddBookForm = props => {
         setBookInfo({ ...bookInfo, author: e.target.value });
     };
 
+    const errorDialogHandler = isOpen => {
+        setOpenErrorDialog(isOpen);
+    }
+
     const submitHandler = e => {
         e.preventDefault();
+
+        // Making sure input fields contain values
+        if (bookInfo.title.length === 0 || bookInfo.author.length === 0) {
+            // Call error dialog
+            errorDialogHandler(true);
+            return;
+        }
+
         // Setting an id that later will be used as key
         const id = Math.random().toString();
         bookInfo.id = id;
@@ -58,7 +70,7 @@ const AddBookForm = props => {
                 <Header headerIcon={<Book />} headerContent={'Add a new book'} textContent={'Write the title and author below'} />
                 <form className={classes.form} onSubmit={submitHandler}>
                     <TextField variant="outlined" margin="normal" fullWidth id="book-title" label="Book Title" placeholder="Eloquent JavaScript" onChange={titleChangeHandler} value={bookInfo.title} />
-                    <TextField variant="outlined" margin="normal" fullWidth id="author" label="Author" placeholder="Master the language of the web" onChange={authorChangeHandler} value={bookInfo.author} />
+                    <TextField variant="outlined" margin="normal" fullWidth id="author" label="Author" placeholder="Marijn Haverbeke" onChange={authorChangeHandler} value={bookInfo.author} />
                     <Grid container className={classes.buttons}>
                         <Grid item xs>
                             <Button variant="contained" color="secondary" onClick={clickCloseHandler}>Close</Button>
@@ -69,6 +81,7 @@ const AddBookForm = props => {
                     </Grid>
                 </form>
             </div>
+            {openErrorDialog && <ErrorDialog open={openErrorDialog} dialogState={errorDialogHandler} />}
         </Container>
     );
 }
