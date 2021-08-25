@@ -1,4 +1,4 @@
-import { Container, makeStyles, TextField, Button } from '@material-ui/core';
+import { Container, makeStyles, TextField, Button, Grid } from '@material-ui/core';
 import { Book } from '@material-ui/icons';
 import React, { useState } from 'react';
 import Header from '../UI/Header';
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
     },
-    submit: {
+    buttons: {
         margin: theme.spacing(3, 0, 2),
     },
 }));
@@ -50,6 +50,10 @@ const AddBookForm = props => {
         setBookInfo({ title: '', author: '' });
     };
 
+    const clickCloseHandler = () => {
+        props.onHideForm();
+    }
+
     return (
         <Container maxWidth="xs">
             <div className={classes.paper}>
@@ -57,7 +61,14 @@ const AddBookForm = props => {
                 <form className={classes.form} onSubmit={submitHandler}>
                     <TextField variant="outlined" margin="normal" fullWidth id="book-title" label="Book Title" placeholder="Eloquent JavaScript" onChange={titleChangeHandler} value={bookInfo.title} />
                     <TextField variant="outlined" margin="normal" fullWidth id="author" label="Author" placeholder="Master the language of the web" onChange={authorChangeHandler} value={bookInfo.author} />
-                    <Button className={classes.submit} variant="contained" color="primary" type="submit" fullWidth>Add new book</Button>
+                    <Grid container className={classes.buttons}>
+                        <Grid item xs>
+                            <Button variant="contained" color="secondary" onClick={clickCloseHandler}>Close</Button>
+                        </Grid>
+                        <Grid item>
+                            <Button variant="contained" color="primary" type="submit">Add new book</Button>
+                        </Grid>
+                    </Grid>
                 </form>
             </div>
         </Container>

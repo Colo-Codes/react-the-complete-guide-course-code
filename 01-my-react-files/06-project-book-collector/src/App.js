@@ -35,6 +35,10 @@ function App() {
     setShowAddBookForm(true);
   }
 
+  const hideFormHandler = () => {
+    setShowAddBookForm(false);
+  }
+
   // 'Lifting state up' function
   const newBookHandler = newBook => {
     setBookList(prevBook => [...prevBook, newBook]);
@@ -48,7 +52,7 @@ function App() {
   return (
     <React.Fragment>
       <header className={classes.paper}>
-        {showAddBookForm && <AddBookForm onNewBook={newBookHandler} />} {/* Conditional Rendering */}
+        {showAddBookForm && <AddBookForm onNewBook={newBookHandler} onHideForm={hideFormHandler} />} {/* Conditional Rendering */}
         {!showAddBookForm && <Header headerIcon={<Home className={classes.icon} />} headerContent={'Welcome to BookCollector'} textContent={'Click the button below to add a new book'} />} {/* Conditional Rendering */}
         {!showAddBookForm && <Button variant="contained" color="primary" onClick={addNewBookHandler} className={classes.button} >Add new book</Button>} {/* Conditional Rendering */}
       </header>
