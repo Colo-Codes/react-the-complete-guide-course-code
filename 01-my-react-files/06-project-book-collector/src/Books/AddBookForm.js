@@ -29,7 +29,6 @@ const useStyles = makeStyles(theme => ({
 
 const AddBookForm = props => {
     const [bookInfo, setBookInfo] = useState({ title: '', author: '', id: '' });
-    console.log(bookInfo);
     const classes = useStyles();
 
     const titleChangeHandler = e => {

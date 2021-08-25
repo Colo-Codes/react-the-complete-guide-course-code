@@ -8,7 +8,7 @@ const BooksGrid = props => {
         <Container>
             <Grid container>
                 {props.bookList.length > 0 && props.bookList.map(bookItem =>
-                    <BooksGridItem key={bookItem.id} title={bookItem.title} author={bookItem.author} />
+                    <BooksGridItem key={bookItem.id} id={bookItem.id} title={bookItem.title} author={bookItem.author} onDelete={props.onDeleteBook} />
                 )}
             </Grid>
         </Container>

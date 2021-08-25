@@ -3,6 +3,10 @@ import { TurnedIn } from '@material-ui/icons';
 
 const BooksGridItem = props => {
 
+    const clickHandler = () => {
+        props.onDelete(props.id);
+    }
+
     return (
         <Grid item>
             <Card raised>
@@ -17,7 +21,7 @@ const BooksGridItem = props => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button variant="outlined" size="small" color="secondary">
+                    <Button variant="outlined" size="small" color="secondary" onClick={clickHandler}>
                         Delete
                     </Button>
                 </CardActions>

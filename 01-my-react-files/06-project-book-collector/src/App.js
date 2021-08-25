@@ -40,6 +40,11 @@ function App() {
     setBookList(prevBook => [...prevBook, newBook]);
   }
 
+  // 'Lifting state up' function
+  const deleteBookHandler = bookId => {
+    setBookList(prevBook => prevBook.filter(book => book.id !== bookId));
+  }
+
   return (
     <React.Fragment>
       <header className={classes.paper}>
@@ -48,7 +53,7 @@ function App() {
         {!showAddBookForm && <Button variant="contained" color="primary" onClick={addNewBookHandler} className={classes.button} >Add new book</Button>} {/* Conditional Rendering */}
       </header>
       <main>
-        <BooksGrid bookList={bookList} />
+        <BooksGrid bookList={bookList} onDeleteBook={deleteBookHandler} />
       </main>
       <footer>
         <Box mt={8}><Copyright /></Box>
