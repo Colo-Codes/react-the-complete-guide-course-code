@@ -10,7 +10,8 @@ import BooksGrid from './Books/BooksGrid';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(15),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -21,6 +22,9 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(4),
   },
   button: {
+    marginTop: theme.spacing(4),
+  },
+  grid: {
     marginTop: theme.spacing(4),
   }
 }));
