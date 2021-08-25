@@ -1,26 +1,17 @@
-import { Container } from '@material-ui/core';
-// import { useTheme } from '@material-ui/styles';
-import { makeStyles } from '@material-ui/core';
-import { Avatar } from '@material-ui/core';
+import { Container, makeStyles, TextField, Button } from '@material-ui/core';
 import { Book } from '@material-ui/icons';
-import { Typography } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import { Button } from "@material-ui/core";
+import React, { useState } from 'react';
+import Header from '../UI/Header';
+import BooksGrid from './BooksGridItem';
 
 // Use Dialogs
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(10),
+        // marginTop: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        width: theme.spacing(8),
-        height: theme.spacing(8),
-        backgroundColor: theme.palette.primary.main,
     },
     icon: {
         color: 'white',
@@ -37,18 +28,33 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddBookForm = props => {
+    const [bookInfo, setBookInfo] = useState({ title: '', author: '' });
+    console.log(bookInfo);
     const classes = useStyles();
+
+    const titleChangeHandler = e => {
+        setBookInfo({ ...bookInfo, title: e.target.value });
+    };
+
+    const authorChangeHandler = e => {
+        setBookInfo({ ...bookInfo, author: e.target.value });
+    };
+
+    const submitHandler = e => {
+        e.preventDefault();
+        // Lifting this state to be used in BooksGridItem
+        props.onNewBook(bookInfo);
+        // Reset input fields
+        setBookInfo({ title: '', author: '' });
+    };
 
     return (
         <Container maxWidth="xs">
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <Book className={classes.icon} />
-                </Avatar>
-                <Typography variant="h5" component="h2">Add a new book to the system</Typography>
-                <form className={classes.form}>
-                    <TextField variant="outlined" margin="normal" fullWidth id="book-title" label="Book Title" placeholder="Eloquent JavaScript" />
-                    <TextField variant="outlined" margin="normal" fullWidth id="description" label="Short Description" placeholder="Master the language of the web" />
+                <Header headerIcon={<Book />} headerContent={'Add a new book'} textContent={'Write the title and author below'} />
+                <form className={classes.form} onSubmit={submitHandler}>
+                    <TextField variant="outlined" margin="normal" fullWidth id="book-title" label="Book Title" placeholder="Eloquent JavaScript" onChange={titleChangeHandler} value={bookInfo.title} />
+                    <TextField variant="outlined" margin="normal" fullWidth id="author" label="Author" placeholder="Master the language of the web" onChange={authorChangeHandler} value={bookInfo.author} />
                     <Button className={classes.submit} variant="contained" color="primary" type="submit" fullWidth>Add new book</Button>
                 </form>
             </div>
