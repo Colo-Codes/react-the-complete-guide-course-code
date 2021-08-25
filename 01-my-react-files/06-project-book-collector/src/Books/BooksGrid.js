@@ -4,13 +4,12 @@ import BooksGridItem from './BooksGridItem';
 
 const BooksGrid = props => {
 
-    // const [newBook, setNewBook] = useState(false);
-
-
     return (
         <Container>
             <Grid container>
-                <BooksGridItem title={props.newBookInfo.title} author={props.newBookInfo.author} />
+                {props.bookList.length > 0 && props.bookList.map(bookItem =>
+                    <BooksGridItem key={bookItem.id} title={bookItem.title} author={bookItem.author} />
+                )}
             </Grid>
         </Container>
     );

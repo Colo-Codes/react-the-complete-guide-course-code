@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddBookForm = props => {
-    const [bookInfo, setBookInfo] = useState({ title: '', author: '' });
+    const [bookInfo, setBookInfo] = useState({ title: '', author: '', id: '' });
     console.log(bookInfo);
     const classes = useStyles();
 
@@ -42,6 +42,9 @@ const AddBookForm = props => {
 
     const submitHandler = e => {
         e.preventDefault();
+        // Setting an id that later will be used as key
+        const id = Math.random().toString();
+        bookInfo.id = id;
         // Lifting this state to be used in BooksGridItem
         props.onNewBook(bookInfo);
         // Reset input fields

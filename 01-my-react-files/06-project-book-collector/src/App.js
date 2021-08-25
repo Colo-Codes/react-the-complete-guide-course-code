@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const [showAddBookForm, setShowAddBookForm] = useState(false);
-  const [newBookInfo, setNewBookInfo] = useState('');
+  const [bookList, setBookList] = useState('');
 
   const classes = useStyles();
 
@@ -37,7 +37,7 @@ function App() {
 
   // 'Lifting state up' function
   const newBookHandler = newBook => {
-    setNewBookInfo(newBook);
+    setBookList(prevBook => [...prevBook, newBook]);
   }
 
   return (
@@ -48,7 +48,7 @@ function App() {
         {!showAddBookForm && <Button variant="contained" color="primary" onClick={addNewBookHandler} className={classes.button} >Add new book</Button>} {/* Conditional Rendering */}
       </header>
       <main>
-        <BooksGrid newBookInfo={newBookInfo} />
+        <BooksGrid bookList={bookList} />
       </main>
       <footer>
         <Box mt={8}><Copyright /></Box>

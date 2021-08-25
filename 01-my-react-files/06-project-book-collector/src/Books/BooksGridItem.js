@@ -23,7 +23,6 @@ const BooksGridItem = props => {
                 </CardActions>
             </Card>
         </Grid>
-
     );
 }
 
