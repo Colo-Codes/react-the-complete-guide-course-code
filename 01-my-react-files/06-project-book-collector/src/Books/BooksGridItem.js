@@ -1,14 +1,17 @@
 import { useState } from 'react';
 
-import { Button, makeStyles, Container, Grid, Card, CardContent, CardActions, Typography, CardHeader, Avatar } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
+import { Button, makeStyles, Grid, Card, CardContent, CardActions, Typography, CardHeader, Avatar } from '@material-ui/core';
 import { TurnedIn } from '@material-ui/icons';
-
 
 const useStyles = makeStyles(theme => ({
     root: {
+        display: 'flex',
+        flexDirection: 'column',
         width: '15rem',
         height: '100%',
+    },
+    cardFooter: {
+        marginTop: 'auto',
     },
 }));
 
@@ -36,7 +39,7 @@ const BooksGridItem = props => {
                         {props.author}
                     </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions className={classes.cardFooter}>
                     <Button variant="outlined" size="small" color="secondary" onClick={clickHandler}>
                         Delete
                     </Button>

@@ -1,5 +1,5 @@
 import { Container, Grid } from '@material-ui/core';
-import { useState } from 'react';
+
 import BooksGridItem from './BooksGridItem';
 
 const BooksGrid = props => {

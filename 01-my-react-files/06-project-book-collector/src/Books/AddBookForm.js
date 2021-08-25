@@ -2,13 +2,11 @@ import { Container, makeStyles, TextField, Button, Grid } from '@material-ui/cor
 import { Book } from '@material-ui/icons';
 import React, { useState } from 'react';
 import Header from '../UI/Header';
-import BooksGrid from './BooksGridItem';
 
 // Use Dialogs
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        // marginTop: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

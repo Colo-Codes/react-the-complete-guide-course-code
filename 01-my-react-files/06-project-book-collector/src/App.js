@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Box, Button, Divider, makeStyles } from '@material-ui/core';
 import { Home } from '@material-ui/icons';
 
-import AddBookForm from './Books/AddBookForm';
 import Copyright from './UI/Copyright';
 import Header from './UI/Header';
+import AddBookForm from './Books/AddBookForm';
 import BooksGrid from './Books/BooksGrid';
 
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(15),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -23,9 +22,14 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(22),
   },
-  grid: {
-    marginTop: theme.spacing(4),
+  footer: {
+    marginV: theme.spacing(4),
+  },
+  divider: {
+    width: '50%',
+    margin: '2rem auto',
   }
 }));
 
@@ -60,11 +64,12 @@ function App() {
         {!showAddBookForm && <Header headerIcon={<Home className={classes.icon} />} headerContent={'Welcome to BookCollector'} textContent={'Click the button below to add a new book'} />} {/* Conditional Rendering */}
         {!showAddBookForm && <Button variant="contained" color="primary" onClick={addNewBookHandler} className={classes.button} >Add new book</Button>} {/* Conditional Rendering */}
       </header>
+      <Divider className={classes.divider} variant="middle" />
       <main>
         <BooksGrid bookList={bookList} onDeleteBook={deleteBookHandler} />
       </main>
       <footer>
-        <Box mt={8}><Copyright /></Box>
+        <Box my={8}><Copyright /></Box>
       </footer>
     </React.Fragment>
   );
