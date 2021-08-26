@@ -30,6 +30,7 @@ const AddUser = (props) => {
       });
       return;
     }
+    // IMPORTANT: We shouldn't manipulate the DOM through Refs, this is an exception
     props.onAddUser(enteredName, enteredUserAge);
     nameInputRef.current.value = '';
     ageInputRef.current.value = '';
