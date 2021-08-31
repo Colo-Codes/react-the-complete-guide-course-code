@@ -2,14 +2,14 @@ import classes from './HeaderCartButton.module.css';
 
 import CartIcon from '../Cart/CartIcon';
 import { useContext, useEffect, useState } from 'react';
-import CardContext from '../../store/cart-context';
+import CartContext from '../../store/cart-context';
 
 const HeaderCartButton = props => {
     const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
     // NOTE: The context is managed by the closest provider.
     // NOTE: Whenever the context changes, this component will be re-evaluated by React.
-    const cartCtx = useContext(CardContext);
+    const cartCtx = useContext(CartContext);
 
     const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => curNumber + item.amount, 0);
 
