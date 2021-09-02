@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -28,14 +28,14 @@ function App() {
   // }
 
   // Using async...await
-  async function fetchMoviesHandler() {
+  const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
       // fetch() sends a GET request by default
-      // const response = await fetch('https://swapi.dev/api/films/');
+      const response = await fetch('https://swapi.dev/api/films/');
       // const response = await fetch('https://swapi.dev/api/films/ERROR');
-      const response = await fetch('https://swapi.dev/api/filmsERROR');
+      // const response = await fetch('https://swapi.dev/api/filmsERROR');
 
       if (!response.ok) {
         throw new Error('Something went wrong!');
@@ -56,7 +56,11 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  }
+  }, []); // The useCallback hook has no external dependencies in this case
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   // Handling messages to user
   let content = <p>Found no movies! <span role="img" aria-label="Ho no!">🤭</span></p>;
