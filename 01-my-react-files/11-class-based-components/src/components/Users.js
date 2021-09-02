@@ -14,6 +14,13 @@ class Users extends Component {
     };
   }
 
+  componentDidUpdate() {
+    if (this.props.users.length === 0) {
+      // If this error is not handled, the app will crash when searching for a user that is not in the list
+      throw new Error('No users provided!'); // (JavaScript) We need to handle this error. If the error is handled in the same component, we can use try/catch, but if the error needs to be handled on a different component, we need to create and use an 'Error Boundary'.
+    }
+  }
+
   toggleUsersHandler() {
     // this.state.showUsers = false // This is not valid
     // React merges the new state with the old one, overriding what we tell it to override and keeping the original states that weren't modified
