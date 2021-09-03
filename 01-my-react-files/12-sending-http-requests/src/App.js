@@ -28,6 +28,7 @@ function App() {
   //   });
   // }
 
+  // SECTION Getting data
   // Using async...await
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
@@ -44,16 +45,30 @@ function App() {
       }
 
       const data = await response.json();
-      const transformedMovies = data.results.map(movieData => {
-        return {
-          id: movieData.episode_id,
-          title: movieData.title,
-          releaseDate: movieData.release_date,
-          openingText: movieData.opening_crawl
-        }
-      });
+
+      const loadedMovies = [];
+
+      for (const key in data) {
+        loadedMovies.push({
+          id: key,
+          title: data[key].title,
+          openingText: data[key].openingText,
+          releaseDate: data[key].releaseDate,
+        });
+      }
+
+      // const transformedMovies = data.results.map(movieData => {
+      //   return {
+      //     id: movieData.episode_id,
+      //     title: movieData.title,
+      //     releaseDate: movieData.release_date,
+      //     openingText: movieData.opening_crawl
+      //   }
+      // });
+
       // Trigger a state update with the new data
-      setMovies(transformedMovies);
+      // setMovies(transformedMovies);
+      setMovies(loadedMovies);
     } catch (error) {
       setError(error.message);
     }
@@ -64,8 +79,21 @@ function App() {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
 
-  function addMovieHandler(movie) {
+  // SECTION Sending data to the database
+  async function addMovieHandler(movie) {
     console.log(movie);
+    const response = await fetch('https://react-http-test-d8033-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json', {
+      // We define the 'fetch' method to POST to send data to the database
+      method: 'POST',
+      // We need to send a JSON object, not a JavaScript object
+      body: JSON.stringify(movie),
+      // Headers for REST APIs
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await response.json();
+    console.log(data);
   }
 
   // Handling messages to user
