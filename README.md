@@ -1,4 +1,4 @@
-# react-the-complete-guide-course
+# react-the-complete-guide-course-my-notes
 
 React - The Complete Guide (incl Hooks, React Router, Redux) Udemy course
 
