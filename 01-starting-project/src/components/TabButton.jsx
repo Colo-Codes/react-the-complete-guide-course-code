@@ -1,7 +1,7 @@
-export default function TabButton({ children }) {
+export default function TabButton({ children, componentOnClick }) {
   return (
     <li>
-      <button>{children}</button>
+      <button onClick={componentOnClick}>{children}</button>
     </li>
   );
 }
