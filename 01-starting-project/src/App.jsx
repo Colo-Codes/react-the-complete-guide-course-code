@@ -6,18 +6,27 @@ import TabButton from "./components/TabButton.jsx";
 
 // Main component
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("components");
-
-  let coreConcepts = [];
-
-  // Advanced way of creating multiple components based on iterable data (an array in this case)
-  CORE_CONCEPTS.forEach((concept, i) => {
-    coreConcepts.push(<CoreConcept key={i} {...concept} />);
-  });
+  const [selectedTopic, setSelectedTopic] = useState();
 
   function clickHandler(contentKeyword) {
     setSelectedTopic(contentKeyword);
   }
+
+  // Advanced way of creating multiple components based on iterable data (an array in this case)
+  let coreConcepts = [];
+  CORE_CONCEPTS.forEach((concept, i) => {
+    coreConcepts.push(<CoreConcept key={i} {...concept} />);
+  });
+
+  const topicDescription = selectedTopic && (
+    <div id="tab-content">
+      <h3>{EXAMPLES[selectedTopic].title}</h3>
+      <p>{EXAMPLES[selectedTopic].description}</p>
+      <pre>
+        <code>{EXAMPLES[selectedTopic].code}</code>
+      </pre>
+    </div>
+  );
 
   return (
     <div>
@@ -43,13 +52,7 @@ function App() {
               State
             </TabButton>
           </menu>
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div>
+          {!selectedTopic ? <p>Select a topic</p> : topicDescription}
         </section>
       </main>
     </div>
