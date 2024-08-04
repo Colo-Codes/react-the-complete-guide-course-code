@@ -13,10 +13,9 @@ function App() {
   }
 
   // Advanced way of creating multiple components based on iterable data (an array in this case)
-  let coreConcepts = [];
-  CORE_CONCEPTS.forEach((concept, i) => {
-    coreConcepts.push(<CoreConcept key={i} {...concept} />);
-  });
+  const coreConcepts = CORE_CONCEPTS.map((concept, i) => (
+    <CoreConcept key={i} {...concept} />
+  ));
 
   const topicDescription = selectedTopic && (
     <div id="tab-content">
@@ -39,16 +38,28 @@ function App() {
         </section>
         <section id="examples">
           <menu>
-            <TabButton componentOnClick={() => clickHandler("components")}>
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              componentOnClick={() => clickHandler("components")}
+            >
               Components
             </TabButton>
-            <TabButton componentOnClick={() => clickHandler("jsx")}>
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              componentOnClick={() => clickHandler("jsx")}
+            >
               JSX
             </TabButton>
-            <TabButton componentOnClick={() => clickHandler("props")}>
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              componentOnClick={() => clickHandler("props")}
+            >
               Props
             </TabButton>
-            <TabButton componentOnClick={() => clickHandler("state")}>
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              componentOnClick={() => clickHandler("state")}
+            >
               State
             </TabButton>
           </menu>
