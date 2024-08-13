@@ -88,3 +88,18 @@ function typedReturnAdd(a: number, b: number): number {
 function impureFunction(message: string): void {
   console.log(message);
 }
+
+// Generics
+
+function insertAtBeginning<T>(array: T[], value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoArray = [1, 2, 3];
+
+// function insertAtBeginning<number>(array: number[], value: number): number[]
+const numberArray = insertAtBeginning(demoArray, -1);
+
+// function insertAtBeginning<string>(array: string[], value: string): string[]
+const stringArray = insertAtBeginning(["a", "b", "c"], "z");
