@@ -62,4 +62,29 @@ people = [
   "someone else", // errors
 ];
 
+// Type inference
+
+let studentName = "Damian";
+studentName = 43; // errors because TypeScript infers that studentName should be a string, as it was defined as such
+
+// Union types
+
+let course: string | number = "React course";
+
+course = 100123; // strings and numbers are allowed
+
 // Function types, parameters
+
+function add(a: number, b: number) {
+  return a + b; // inferred return type: number
+}
+
+// explicitly defined number return type
+function typedReturnAdd(a: number, b: number): number {
+  return a + b;
+}
+
+// void type: there is no return value in the function
+function impureFunction(message: string): void {
+  console.log(message);
+}
