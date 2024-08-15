@@ -22,7 +22,7 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
   return (
     <ul>
       {props.items.map((item) => (
-        <TodoItem todo={item} />
+        <TodoItem key={item.id} todo={item} />
       ))}
     </ul>
   );
