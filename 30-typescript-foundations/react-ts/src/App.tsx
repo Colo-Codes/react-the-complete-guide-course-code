@@ -14,10 +14,16 @@ function App() {
     });
   };
 
+  const handleDelete = (id: string) => {
+    setTodos((prevState) => {
+      return prevState.filter((todo) => todo.id !== id);
+    });
+  };
+
   return (
     <>
       <NewTodo onAddTodo={handleAddTodo} />
-      <Todos items={todos} />
+      <Todos items={todos} onDelete={handleDelete} />
     </>
   );
 }

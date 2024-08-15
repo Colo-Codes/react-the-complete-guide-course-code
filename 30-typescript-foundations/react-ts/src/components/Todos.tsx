@@ -19,11 +19,13 @@ import classes from "./Todos.module.css";
 // If we need an element to be optional, we can add a question mark to it: `{ items?: string[] }`.
 // const Todos: React.FC<{ items: string[] }> = (props) => {
 // We can use the class name as a type.
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[]; onDelete: (id: string) => void }> = (
+  props
+) => {
   return (
     <ul className={classes.todos}>
       {props.items.map((item) => (
-        <TodoItem key={item.id} todo={item} />
+        <TodoItem key={item.id} todo={item} onDelete={props.onDelete} />
       ))}
     </ul>
   );
