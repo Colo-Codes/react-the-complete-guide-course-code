@@ -15,7 +15,7 @@ function App() {
       const updatedItems = [...prevShoppingCart.items];
 
       const existingCartItemIndex = updatedItems.findIndex(
-        (cartItem) => cartItem.id === id
+        (cartItem) => cartItem.id === id,
       );
       const existingCartItem = updatedItems[existingCartItemIndex];
 
@@ -45,7 +45,7 @@ function App() {
     setShoppingCart((prevShoppingCart) => {
       const updatedItems = [...prevShoppingCart.items];
       const updatedItemIndex = updatedItems.findIndex(
-        (item) => item.id === productId
+        (item) => item.id === productId,
       );
 
       const updatedItem = {
@@ -70,10 +70,7 @@ function App() {
     <CartContext.Provider
       value={{ items: shoppingCart.items, handleAddItemToCart }}
     >
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
+      <Header />
       <Shop />
     </CartContext.Provider>
   );
