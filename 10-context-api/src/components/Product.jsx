@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../store/shopping-cart-context.jsx";
 
 export default function Product({ id, image, title, price, description }) {
-  const { handleAddItemToCart } = useContext(CartContext);
+  const { updateItemQuantity } = useContext(CartContext);
 
   return (
     <article className="product">
@@ -14,7 +14,7 @@ export default function Product({ id, image, title, price, description }) {
           <p>{description}</p>
         </div>
         <p className="product-actions">
-          <button onClick={() => handleAddItemToCart(id)}>Add to Cart</button>
+          <button onClick={() => updateItemQuantity(id)}>Add to Cart</button>
         </p>
       </div>
     </article>
