@@ -1,5 +1,6 @@
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from "../store";
 
 const Counter = () => {
   // Use useSelector to select which piece of data we want to extract from the store
@@ -7,16 +8,12 @@ const Counter = () => {
   const showCounter = useSelector((state) => state.showCounter);
 
   const dispatch = useDispatch();
-  const toggleCounterHandler = () => dispatch({ type: "TOGGLE_STATE" });
-  const handleIncrement = () => dispatch({ type: "INCREMENT" });
-  const handleIncrementByN = () =>
-    dispatch({
-      type: "INCREMENT_BY_N",
-      payload: {
-        n: 10,
-      },
-    });
-  const handleDecrement = () => dispatch({ type: "DECREMENT" });
+  const toggleCounterHandler = () => dispatch(counterActions.toggleState());
+  const handleIncrement = () => dispatch(counterActions.increment());
+  const handleIncrementByN = () => dispatch(counterActions.incrementByN(10));
+  // The above code will return:
+  // { type: some_unique_id, payload: 10 }
+  const handleDecrement = () => dispatch(counterActions.decrement());
 
   return (
     <main className={classes.counter}>
