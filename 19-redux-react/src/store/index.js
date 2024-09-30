@@ -1,20 +1,19 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const initialState = { counter: 0, showCounter: true };
-
-// Reducer using Redux Toolkit
+// Reducers using Redux Toolkit
+const initialCounterState = { value: 0, showCounter: true };
 const counterSlice = createSlice({
   name: "counter",
-  initialState,
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
-      state.counter++;
+      state.value++;
     },
     decrement(state) {
-      state.counter--;
+      state.value--;
     },
     incrementByN(state, action) {
-      state.counter += action.payload;
+      state.value += action.payload;
     },
     toggleState(state) {
       state.showCounter = !state.showCounter;
@@ -22,15 +21,31 @@ const counterSlice = createSlice({
   },
 });
 
+const initialAuthState = { authenticated: false };
+const authSlice = createSlice({
+  name: "auth",
+  initialState: initialAuthState,
+  reducers: {
+    authenticate(state) {
+      state.authenticated = true;
+    },
+    logout(state) {
+      state.authenticated = false;
+    },
+  },
+});
+
 // Store
 const store = configureStore({
-  // If we had multiple slices, we could select the "counter" slice like this:
-  // reducer: { counter: counterSlice.reducer },
-  reducer: counterSlice.reducer,
+  reducer: {
+    counter: counterSlice.reducer,
+    auth: authSlice.reducer,
+  },
 });
 
 // Actions
 const counterActions = counterSlice.actions;
+const authActions = authSlice.actions;
 
-export { counterActions };
+export { counterActions, authActions };
 export default store;
