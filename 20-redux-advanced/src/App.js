@@ -5,7 +5,7 @@ import Products from "./components/Shop/Products";
 
 function App() {
   // Access to the state
-  const isCartShown = useSelector((state) => state.isCartShown);
+  const isCartShown = useSelector((state) => state.ui.isCartShown);
 
   return (
     <Layout>
